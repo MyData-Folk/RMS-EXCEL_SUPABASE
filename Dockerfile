@@ -21,6 +21,27 @@ ENV FLASK_ENV=${FLASK_ENV}
 RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
+FROM python:3.12-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+
+# Modifiez cette partie pour forcer l'installation
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir flask-cors
+
+COPY . .
+
+RUN mkdir -p uploads && chmod 777 uploads
+
+EXPOSE 5000
+
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--timeout", "120", "app:app"]
+
 # Répertoire de travail
 WORKDIR /app
 
