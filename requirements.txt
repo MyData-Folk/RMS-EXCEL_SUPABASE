@@ -1,21 +1,10 @@
-# Supabase Auto-Importer (RMS Sync) - Dépendances Python
-# Version: 2.0 - 21 Janvier 2026
-
-# Framework Web
 Flask==3.0.2
-
-# Traitement de données
+Flask-Cors==4.0.0
 pandas==2.2.0
 openpyxl==3.1.2
 xlrd==2.0.1
-
-# Client Supabase
 supabase==2.3.4
-
-# Gestion des variables d'environnement
 python-dotenv==1.0.1
-
-# Utilitaires
 python-dateutil==2.8.2
-
-# Note: Pour le déploiement en production, créez un Dockerfile basé sur python:3.9-slim
+gunicorn==21.2.0
+chardet==5.2.0
